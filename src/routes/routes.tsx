@@ -14,7 +14,7 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/details/:flightNumber',
+        path: '/details/:flightNo',
         element: <DetailsPage />,
       },
     ],
