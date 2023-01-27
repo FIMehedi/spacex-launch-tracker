@@ -10,7 +10,8 @@ function LaunchCards() {
 		(state: any) => state.launchers.searchAndFilter
 	);
 
-	if (isError) return <p>Something went wrong!</p>;
+	if (isError)
+		return <p className="text-[#ccc] text-center">Something went wrong!</p>;
 
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 	if (isLoading)

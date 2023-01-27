@@ -11,7 +11,7 @@ export const launchesApi = createApi({
 		}),
 		getLaunchByFlightNo: builder.query({
 			query: (flightNo) => '/launches/' + flightNo,
-		})
+		}),
 	}),
 });
 

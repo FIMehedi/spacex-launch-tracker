@@ -6,14 +6,16 @@ import {
 	setFindItems,
 	setLaunchDate,
 	setLaunchStatus,
+	setOnlyUpcoming,
 	setSearchFilterStatus,
 } from '../../../features/launchers/launchersSlice';
 import ByLaunchDate from './ByLaunchDate';
 import ByLaunchStatus from './ByLaunchStatus';
+import ByUpcoming from './ByUpcoming';
 
 function Filter() {
 	const dispatch = useDispatch();
-	const { launchDate, launchStatus } = useSelector(
+	const { launchDate, launchStatus, onlyUpComing } = useSelector(
 		(state: any) => state.launchers.searchAndFilter
 	);
 
@@ -21,7 +23,7 @@ function Filter() {
 
 	useEffect(() => {
 		if (isSuccess) dispatch(setFindItems(data));
-	}, [launchDate, launchStatus, isSuccess]);
+	}, [launchDate, launchStatus, isSuccess, onlyUpComing]);
 
 	const handleDateFilter = (e: RadioChangeEvent) => {
 		dispatch(setLaunchDate(e.target.value));
@@ -33,8 +35,13 @@ function Filter() {
 		dispatch(setSearchFilterStatus());
 	};
 
+	const handleUpcomingFilter = (e: RadioChangeEvent) => {
+		dispatch(setOnlyUpcoming(e.target.value));
+		dispatch(setSearchFilterStatus());
+	};
+
 	return (
-		<div className="flex gap-1 py-4">
+		<div className="flex justify-center gap-1 py-4">
 			<ByLaunchDate
 				launchDate={launchDate}
 				handleDateFilter={handleDateFilter}
@@ -42,6 +49,10 @@ function Filter() {
 			<ByLaunchStatus
 				launchStatus={launchStatus}
 				handleStatusFilter={handleStatusFilter}
+			/>
+			<ByUpcoming
+				onlyUpComing={onlyUpComing}
+				handleUpcomingFilter={handleUpcomingFilter}
 			/>
 		</div>
 	);

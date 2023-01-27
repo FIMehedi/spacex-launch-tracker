@@ -50,12 +50,18 @@ export const launchersSlice = createSlice({
 		},
 		setLaunchDate: (state, action) => {
 			state.searchAndFilter.launchDate = action.payload;
+			if (action.payload !== 'all') state.searchAndFilter.onlyUpComing = false;
 		},
 		setLaunchStatus: (state, action) => {
 			state.searchAndFilter.launchStatus = action.payload;
+			if (action.payload !== 'all') state.searchAndFilter.onlyUpComing = false;
 		},
 		setOnlyUpcoming: (state, action) => {
 			state.searchAndFilter.onlyUpComing = action.payload;
+			if (action.payload) {
+				state.searchAndFilter.launchDate = 'all';
+				state.searchAndFilter.launchStatus = 'all';
+			}
 		},
 		setFindItems: (state, action) => {
 			const launchers = action.payload;
