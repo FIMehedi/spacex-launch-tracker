@@ -27,7 +27,7 @@ const Search = () => {
 			<input
 				onChange={(e) => dispatch(setSearchTerm(e.target.value))}
 				type="text"
-				placeholder="Search by flight name"
+				placeholder="Search by flight or mission name"
 				className="bg-[#444] rounded py-1 px-2 text-emerald-400 outline-none font-medium w-[280px]"
 			/>
 		</div>

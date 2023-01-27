@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { filterByDays, filterByStatus } from '../../utils/filter';
+import { searchTermMatch } from '../../utils/search';
 
 interface InitialState {
 	searchAndFilter: {
@@ -67,9 +68,7 @@ export const launchersSlice = createSlice({
 			const launchers = action.payload;
 			const filterItems = launchers.filter(
 				(item: any) =>
-					item.rocket.rocket_name
-						.toLowerCase()
-						.includes(state.searchAndFilter.searchTerm) &&
+					searchTermMatch(item, state.searchAndFilter.searchTerm) &&
 					filterByDays(
 						item.launch_date_utc,
 						state.searchAndFilter.launchDate
