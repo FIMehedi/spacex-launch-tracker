@@ -5,11 +5,11 @@ import { useGetLaunchesQuery } from '../../../features/api/launches';
 import LaunchCard from '../LaunchCard';
 
 function LaunchCards() {
-	const { isLoading, isError, data } = useGetLaunchesQuery();
+	const { isLoading, isError, data } = useGetLaunchesQuery(null);
 	const {
 		search: { findItems, isSearching, term },
 		filter: { isFilterActive, filterItems },
-	} = useSelector((state) => state.launchers);
+	} = useSelector((state: any) => state.launchers);
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 	let launchers = [];
@@ -38,7 +38,9 @@ function LaunchCards() {
 				gutter={[responsiveGridSpace, responsiveGridSpace]}
 			>
 				{launchers.length ? (
-					launchers.map((item) => <LaunchCard key={item.flight} item={item} />)
+					launchers.map((item: any) => (
+						<LaunchCard key={item.flight} item={item} />
+					))
 				) : (
 					<p className="text-[#ccc]">No Data Found!</p>
 				)}

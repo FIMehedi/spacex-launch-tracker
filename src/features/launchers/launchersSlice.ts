@@ -8,9 +8,9 @@ const initialState = {
 	},
 	filter: {
 		isFilterActive: false,
-		date: 'all-time',
-		status: 'all',
-		upcoming: false,
+		launchDate: 'all-time',
+		launchStatus: 'all',
+		onlyUpcoming: false,
 		filterItems: [],
 	},
 };
@@ -31,16 +31,23 @@ export const launchersSlice = createSlice({
 		setSearchingStatus: (state, action) => {
 			state.search.isSearching = action.payload;
 		},
+		setLaunchStatus: (state, action) => {
+			state.filter.launchStatus = action.payload;
+		},
 		setFilterStatus: (state) => {
-			if (state.filter.date === 'all-time') {
+			if (
+				state.filter.launchDate === 'all-time' &&
+				state.filter.launchStatus === 'all' &&
+				state.filter.onlyUpcoming === false
+			) {
 				state.filter.isFilterActive = false;
-				state.filter.filterItems = []
+				state.filter.filterItems = [];
 			} else {
 				state.filter.isFilterActive = true;
 			}
 		},
 		changeFilterDate: (state, action) => {
-			state.filter.date = action.payload;
+			state.filter.launchDate = action.payload;
 		},
 		setFilterItems: (state, action) => {
 			state.filter.filterItems = action.payload;
@@ -55,6 +62,7 @@ export const {
 	setFilterStatus,
 	changeFilterDate,
 	setFilterItems,
+	setLaunchStatus,
 } = launchersSlice.actions;
 
 export default launchersSlice.reducer;
