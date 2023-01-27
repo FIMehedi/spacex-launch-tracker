@@ -1,17 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { filterByDays, filterByStatus } from '../../utils/filter';
 
-const initialState = {
-	search: {
-		term: '',
-		isSearching: false,
-		findItems: [],
-	},
-	filter: {
-		isFilterActive: false,
-		launchDate: 'all-time',
+interface InitialState {
+	searchAndFilter: {
+		isActive: boolean;
+		searchTerm: string;
+		launchDate:
+			| 'all'
+			| 'last-week'
+			| 'last-month'
+			| 'last-year'
+			| 'last-5-year';
+		launchStatus: 'all' | 'success' | 'failure';
+		onlyUpComing: boolean;
+		findItems: Object[];
+	};
+}
+
+const initialState: InitialState = {
+	searchAndFilter: {
+		isActive: false,
+		searchTerm: '',
+		launchDate: 'all',
 		launchStatus: 'all',
-		onlyUpcoming: false,
-		filterItems: [],
+		onlyUpComing: false,
+		findItems: [],
 	},
 };
 
@@ -19,50 +32,60 @@ export const launchersSlice = createSlice({
 	name: 'launchers',
 	initialState,
 	reducers: {
-		getSearchTerm: (state, action) => {
-			state.search.term = action.payload.toLowerCase();
-			if (!state.search.term) {
-				state.search.findItems = [];
+		setSearchFilterStatus: (state) => {
+			if (
+				state.searchAndFilter.searchTerm === '' &&
+				state.searchAndFilter.launchDate === 'all' &&
+				state.searchAndFilter.launchStatus === 'all' &&
+				state.searchAndFilter.onlyUpComing === false
+			) {
+				state.searchAndFilter.isActive = false;
+				state.searchAndFilter.findItems = [];
+			} else {
+				state.searchAndFilter.isActive = true;
 			}
 		},
-		setSearchItem: (state, action) => {
-			state.search.findItems = action.payload;
+		setSearchTerm: (state, action) => {
+			state.searchAndFilter.searchTerm = action.payload.toLowerCase().trim();
 		},
-		setSearchingStatus: (state, action) => {
-			state.search.isSearching = action.payload;
+		setLaunchDate: (state, action) => {
+			state.searchAndFilter.launchDate = action.payload;
 		},
 		setLaunchStatus: (state, action) => {
-			state.filter.launchStatus = action.payload;
+			state.searchAndFilter.launchStatus = action.payload;
 		},
-		setFilterStatus: (state) => {
-			if (
-				state.filter.launchDate === 'all-time' &&
-				state.filter.launchStatus === 'all' &&
-				state.filter.onlyUpcoming === false
-			) {
-				state.filter.isFilterActive = false;
-				state.filter.filterItems = [];
-			} else {
-				state.filter.isFilterActive = true;
-			}
+		setOnlyUpcoming: (state, action) => {
+			state.searchAndFilter.onlyUpComing = action.payload;
 		},
-		changeFilterDate: (state, action) => {
-			state.filter.launchDate = action.payload;
-		},
-		setFilterItems: (state, action) => {
-			state.filter.filterItems = action.payload;
+		setFindItems: (state, action) => {
+			const launchers = action.payload;
+			const filterItems = launchers.filter(
+				(item: any) =>
+					item.rocket.rocket_name
+						.toLowerCase()
+						.includes(state.searchAndFilter.searchTerm) &&
+					filterByDays(
+						item.launch_date_utc,
+						state.searchAndFilter.launchDate
+					) &&
+					filterByStatus(
+						item.launch_success,
+						state.searchAndFilter.launchStatus
+					) &&
+					item.upcoming === state.searchAndFilter.onlyUpComing
+			);
+			state.searchAndFilter.findItems = filterItems;
 		},
 	},
 });
 
 export const {
-	getSearchTerm,
-	setSearchItem,
-	setSearchingStatus,
-	setFilterStatus,
-	changeFilterDate,
-	setFilterItems,
+	setFindItems,
+	setSearchFilterStatus,
+	setSearchTerm,
+	setLaunchDate,
 	setLaunchStatus,
+	setOnlyUpcoming,
 } = launchersSlice.actions;
 
 export default launchersSlice.reducer;

@@ -6,29 +6,21 @@ import LaunchCard from '../LaunchCard';
 
 function LaunchCards() {
 	const { isLoading, isError, data } = useGetLaunchesQuery(null);
-	const {
-		search: { findItems, isSearching, term },
-		filter: { isFilterActive, filterItems },
-	} = useSelector((state: any) => state.launchers);
+	const { isActive, findItems } = useSelector(
+		(state: any) => state.launchers.searchAndFilter
+	);
+
+	if (isError) return <p>Something went wrong!</p>;
+
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
-	let launchers = [];
-
-	if (isFilterActive) {
-		launchers = filterItems;
-	} else if (term) {
-		launchers = findItems;
-	} else {
-		launchers = data;
-	}
-
-	if (isLoading || isSearching)
+	if (isLoading)
 		return (
 			<div className="text-center">
 				<Spin indicator={antIcon} />
 			</div>
 		);
 
+	const launchers = isActive ? findItems : data;
 	const responsiveGridSpace = { xs: 8, sm: 16, md: 24, lg: 28 };
 
 	return (

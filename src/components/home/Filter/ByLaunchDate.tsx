@@ -2,15 +2,15 @@ import { Button, Group } from 'antd/es/radio';
 import { FC } from 'react';
 
 interface Props {
+	handleDateFilter: any;
 	launchDate: string;
-	handleFilterByDate: any;
 }
 
-const ByLaunchDate: FC<Props> = ({ launchDate, handleFilterByDate }) => {
+const ByLaunchDate: FC<Props> = ({ launchDate, handleDateFilter }) => {
 	return (
 		<div>
-			<Group value={launchDate} onChange={handleFilterByDate}>
-				<Button value="all-time">All Time</Button>
+			<Group value={launchDate} onChange={handleDateFilter}>
+				<Button value="all">All Time</Button>
 				<Button value="last-week">Last Week</Button>
 				<Button value="last-month">Last Month</Button>
 				<Button value="last-year">Last Year</Button>
