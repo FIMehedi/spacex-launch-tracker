@@ -1,7 +1,7 @@
-import { LoadingOutlined } from '@ant-design/icons';
-import { Row, Spin } from 'antd';
+import { Row } from 'antd';
 import { useSelector } from 'react-redux';
 import { useGetLaunchesQuery } from '../../../features/api/launches';
+import Spinner from '../../shared/Spiner';
 import LaunchCard from '../LaunchCard';
 
 function LaunchCards() {
@@ -13,13 +13,7 @@ function LaunchCards() {
 	if (isError)
 		return <p className="text-[#ccc] text-center">Something went wrong!</p>;
 
-	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-	if (isLoading)
-		return (
-			<div className="text-center">
-				<Spin indicator={antIcon} />
-			</div>
-		);
+	if (isLoading) return <Spinner />;
 
 	const launchers = isActive ? findItems : data;
 	const responsiveGridSpace = { xs: 8, sm: 16, md: 24, lg: 28 };
