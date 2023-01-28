@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# SpaceX Launch Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+The "spacex-launch-tracker" GitHub repository is a project that utilizes the SpaceX API to track and display information about past and upcoming SpaceX launches. It allows users to view details about a specific launch, including launch date, rocket used, and details about the payload. It also includes a feature to filter launches by year and a search bar to search for specific missions.
+
+## Tech Stack
+
+* React
+* TypeScript
+* Redux
+* Redux-Toolkit
+* RTK-query
+* Ant Design
+* Tailwindcss
+* Eslint
+* Airbnb
+
+## Installing Process
+
+```bash
+git clone https://github.com/FIMehedi/spacex-launch-tracker.git
+cd spacex-launch-tracker
+npm i
+```
 
 ## Available Scripts
 
@@ -39,8 +59,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
