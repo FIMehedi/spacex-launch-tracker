@@ -2,7 +2,7 @@ import React from 'react';
 import Filter from '../components/home/Filter';
 import LaunchCards from '../components/home/LaunchCards';
 
-function Home() {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Filter />
@@ -10,5 +10,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

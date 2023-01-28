@@ -5,7 +5,7 @@ import Spinner from '../../shared/Spiner';
 import LaunchCard from '../LaunchCard';
 import { useAppSelector } from '../../../app/hooks';
 
-function LaunchCards() {
+export default function LaunchCards(): JSX.Element {
   const { isLoading, isError } = useGetLaunchesQuery();
   const { findItems } = useAppSelector(
     (state) => state.launchers.searchAndFilter,
@@ -35,5 +35,3 @@ function LaunchCards() {
     </div>
   );
 }
-
-export default LaunchCards;

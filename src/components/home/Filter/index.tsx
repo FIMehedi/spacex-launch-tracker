@@ -13,7 +13,7 @@ import ByLaunchStatus from './ByLaunchStatus';
 import ByUpcoming from './ByUpcoming';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-function Filter() {
+export default function Filter(): JSX.Element {
   const dispatch = useAppDispatch();
   const {
     launchDate,
@@ -59,5 +59,3 @@ function Filter() {
     </div>
   );
 }
-
-export default Filter;

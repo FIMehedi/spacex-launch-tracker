@@ -2,10 +2,8 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import routes from './routes/routes';
 
-function App() {
+export default function App(): JSX.Element {
   return (
     <RouterProvider router={routes} />
   );
 }
-
-export default App;

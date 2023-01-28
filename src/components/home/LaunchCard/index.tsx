@@ -7,7 +7,7 @@ interface Props {
   launch: Launch
 }
 
-function LaunchCard({ launch }:Props) {
+function LaunchCard({ launch }:Props): JSX.Element {
   return (
     <Col>
       <Link to={`/details/${launch.flight_number}`} className="relative">

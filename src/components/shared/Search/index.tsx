@@ -7,7 +7,7 @@ import {
   setSearchTerm,
 } from '../../../features/launchers/launchersSlice';
 
-function Search() {
+export default function Search(): JSX.Element {
   const dispatch = useAppDispatch();
   const { searchTerm } = useAppSelector(
     (state) => state.launchers.searchAndFilter,
@@ -33,5 +33,3 @@ function Search() {
     </div>
   );
 }
-
-export default Search;

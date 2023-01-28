@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../components/shared/AppBar';
 
-function Main() {
+export default function Main(): JSX.Element {
   return (
     <div className="bg-main min-h-screen">
       <AppBar />
@@ -12,5 +12,3 @@ function Main() {
     </div>
   );
 }
-
-export default Main;
