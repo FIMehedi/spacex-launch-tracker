@@ -17,6 +17,10 @@ function Details():JSX.Element {
     return <Spinner />;
   }
 
+  if (!data) {
+    return <p>Data not found!</p>;
+  }
+
   return (
     <div className="bg-[rgba(50,50,50,0.6)] mx-auto mt-2 p-2 px-4 max-w-[600px]">
       <img

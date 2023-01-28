@@ -13,7 +13,7 @@ function Search() {
     (state) => state.launchers.searchAndFilter,
   );
 
-  const { isSuccess, data } = useGetLaunchesQuery(null);
+  const { isSuccess, data } = useGetLaunchesQuery();
 
   useEffect(() => {
     if (isSuccess) {

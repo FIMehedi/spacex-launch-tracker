@@ -6,7 +6,7 @@ import LaunchCard from '../LaunchCard';
 import { useAppSelector } from '../../../app/hooks';
 
 function LaunchCards() {
-  const { isLoading, isError } = useGetLaunchesQuery(null);
+  const { isLoading, isError } = useGetLaunchesQuery();
   const { findItems } = useAppSelector(
     (state) => state.launchers.searchAndFilter,
   );

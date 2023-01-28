@@ -21,7 +21,7 @@ function Filter() {
     onlyUpComing,
   } = useAppSelector((state) => state.launchers.searchAndFilter);
 
-  const { data, isSuccess } = useGetLaunchesQuery(null);
+  const { data, isSuccess } = useGetLaunchesQuery();
 
   useEffect(() => {
     if (isSuccess) dispatch(setFindItems(data));
