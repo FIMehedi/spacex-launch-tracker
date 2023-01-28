@@ -65,7 +65,7 @@ export const launchersSlice = createSlice({
     },
     setFindItems: (state, action: PayloadAction<Launch[]>) => {
       const launchers = action.payload;
-      const filterItems = launchers.filter((item: any) => (
+      const filterItems: Launch[] = launchers.filter((item: Launch) => (
         searchTermMatch(item, state.searchAndFilter.searchTerm)
         && filterByDays(item.launch_date_utc, state.searchAndFilter.launchDate)
         && filterByStatus(item.launch_success, state.searchAndFilter.launchStatus)

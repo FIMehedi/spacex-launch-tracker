@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Group } from 'antd/es/radio';
+import { Button, Group, RadioChangeEvent } from 'antd/es/radio';
 
 interface Props {
-  handleUpcomingFilter: any;
+  handleUpcomingFilter: (e: RadioChangeEvent) => void;
   onlyUpComing: boolean;
 }
 

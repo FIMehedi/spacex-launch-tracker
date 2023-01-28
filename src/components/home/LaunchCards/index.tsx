@@ -26,7 +26,7 @@ function LaunchCards() {
         gutter={[responsiveGridSpace, responsiveGridSpace]}
       >
         {findItems.length ? (
-          findItems.map((item: any) => (<LaunchCard key={item.flight} item={item} />
+          findItems.map((item: any) => (<LaunchCard key={item.flight} launch={item} />
           ))
         ) : (
           <p className="text-[#ccc]">No Data Found!</p>
