@@ -54,7 +54,7 @@ function Details():JSX.Element {
           {!data.launch_success && (
           <li>
             Failure Reason:
-            {data.launch_failure_details.reason}
+            {data.launch_failure_details?.reason || 'Not Specified' }
           </li>
           )}
         </ul>
