@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useGetLaunchesQuery } from '../../../features/api/launches';
 import {
   setFindItems,
-  setSearchFilterStatus,
   setSearchTerm,
 } from '../../../features/launchers/launchersSlice';
 
@@ -18,7 +17,6 @@ export default function Search(): JSX.Element {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setFindItems(data));
-      dispatch(setSearchFilterStatus());
     }
   }, [searchTerm, isSuccess, data, dispatch]);
 

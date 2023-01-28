@@ -9,7 +9,6 @@ type TLaunchStatus = 'all' | 'success' | 'failure';
 
 interface InitialState {
   searchAndFilter: {
-    isActive: boolean;
     searchTerm: string;
     launchDate: TLaunchDate;
     launchStatus: TLaunchStatus;
@@ -20,7 +19,6 @@ interface InitialState {
 
 const initialState: InitialState = {
   searchAndFilter: {
-    isActive: false,
     searchTerm: '',
     launchDate: 'all',
     launchStatus: 'all',
@@ -33,18 +31,6 @@ export const launchersSlice = createSlice({
   name: 'launchers',
   initialState,
   reducers: {
-    setSearchFilterStatus: (state) => {
-      if (
-        state.searchAndFilter.searchTerm === ''
-        && state.searchAndFilter.launchDate === 'all'
-        && state.searchAndFilter.launchStatus === 'all'
-        && state.searchAndFilter.onlyUpComing === false
-      ) {
-        state.searchAndFilter.isActive = false;
-      } else {
-        state.searchAndFilter.isActive = true;
-      }
-    },
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchAndFilter.searchTerm = action.payload.toLowerCase().trim();
     },
@@ -78,7 +64,6 @@ export const launchersSlice = createSlice({
 
 export const {
   setFindItems,
-  setSearchFilterStatus,
   setSearchTerm,
   setLaunchDate,
   setLaunchStatus,

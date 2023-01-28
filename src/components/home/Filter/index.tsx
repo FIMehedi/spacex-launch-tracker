@@ -6,7 +6,6 @@ import {
   setLaunchDate,
   setLaunchStatus,
   setOnlyUpcoming,
-  setSearchFilterStatus,
 } from '../../../features/launchers/launchersSlice';
 import ByLaunchDate from './ByLaunchDate';
 import ByLaunchStatus from './ByLaunchStatus';
@@ -29,17 +28,14 @@ export default function Filter(): JSX.Element {
 
   const handleDateFilter = (e: RadioChangeEvent) => {
     dispatch(setLaunchDate(e.target.value));
-    dispatch(setSearchFilterStatus());
   };
 
   const handleStatusFilter = (e: RadioChangeEvent) => {
     dispatch(setLaunchStatus(e.target.value));
-    dispatch(setSearchFilterStatus());
   };
 
   const handleUpcomingFilter = (e: RadioChangeEvent) => {
     dispatch(setOnlyUpcoming(e.target.value));
-    dispatch(setSearchFilterStatus());
   };
 
   return (
