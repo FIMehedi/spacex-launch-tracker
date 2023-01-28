@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { RadioChangeEvent } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
 import { useGetLaunchesQuery } from '../../../features/api/launches';
 import {
   setFindItems,
@@ -12,12 +11,15 @@ import {
 import ByLaunchDate from './ByLaunchDate';
 import ByLaunchStatus from './ByLaunchStatus';
 import ByUpcoming from './ByUpcoming';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 function Filter() {
-  const dispatch = useDispatch();
-  const { launchDate, launchStatus, onlyUpComing } = useSelector(
-    (state: any) => state.launchers.searchAndFilter,
-  );
+  const dispatch = useAppDispatch();
+  const {
+    launchDate,
+    launchStatus,
+    onlyUpComing,
+  } = useAppSelector((state) => state.launchers.searchAndFilter);
 
   const { data, isSuccess } = useGetLaunchesQuery(null);
 

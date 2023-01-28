@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useGetLaunchesQuery } from '../../../features/api/launches';
 import {
   setFindItems,
@@ -8,9 +8,9 @@ import {
 } from '../../../features/launchers/launchersSlice';
 
 function Search() {
-  const dispatch = useDispatch();
-  const { searchTerm } = useSelector(
-    (state: any) => state.launchers.searchAndFilter,
+  const dispatch = useAppDispatch();
+  const { searchTerm } = useAppSelector(
+    (state) => state.launchers.searchAndFilter,
   );
 
   const { isSuccess, data } = useGetLaunchesQuery(null);
